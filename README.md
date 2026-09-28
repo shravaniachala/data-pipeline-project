@@ -8,6 +8,16 @@ A Python ETL (Extract, Transform, Load) pipeline that pulls datasets from Kaggle
 - **Transform**: Cleans both datasets with pandas (removes junk columns, duplicates and missing values, renames fields)
 - **Load**: Loads the cleaned data into MongoDB Atlas using upserts, so re-running the pipeline never creates duplicates
 
+## Architecture
+
+```
+Kaggle (Titanic dataset) ──┐
+                           ├──► Clean with pandas ──► MongoDB Atlas
+Hugging Face (IMDB) ───────┘
+```
+
+Each source goes through three stages: **Extract** (download the raw data), **Transform** (clean it with pandas), and **Load** (store it in MongoDB Atlas).
+
 ## Tech stack
 
 - Python
